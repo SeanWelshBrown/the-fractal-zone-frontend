@@ -2,10 +2,6 @@ import React from 'react';
 import Sketch from "react-p5"
 
 class FractalCanvas extends React.Component {
-    HEIGHT=500;
-    WIDTH=500;
-    x1 = 500 * 0.33;
-    y1 = 500 * 0.67 ;
 
     setup = (p5, canvasParentRef) => {
         p5.createCanvas(500, 500).parent(canvasParentRef); 
@@ -17,7 +13,7 @@ class FractalCanvas extends React.Component {
         let isBlue = false;
         const sierpinksi = (x, y, size) => {
     
-            if (size > 15) {
+            if (size > this.props.size) {
                 p5.stroke(isBlue ? "#03d7fc" : "#db66ff")
                 p5.triangle(x, y, (x + size), y, (x + (size/2)), (y - (size/2)));
                 isBlue = !isBlue;
@@ -25,9 +21,7 @@ class FractalCanvas extends React.Component {
                 sierpinksi(x + size / 2, y, size / 2)
                 isBlue = !isBlue;
                 sierpinksi(x + size / 4, y - size / 4, size / 2)
-                
             }
-
         }
         sierpinksi(25, 350, 450)
     };
