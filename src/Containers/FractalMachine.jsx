@@ -22,7 +22,9 @@ const FractalMachine = () => {
 
     return(
         <div>
-            <FractalCanvas />
+            <FractalCanvas 
+                size={sliderValue}
+            />
             <FractalMachineInput 
                 userInputX={userInputX}
                 userInputY={userInputY}
