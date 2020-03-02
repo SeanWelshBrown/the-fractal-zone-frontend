@@ -5,6 +5,7 @@ import './App.css';
 import {Route, Switch, Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 
+import ProfileContainer from './Containers/ProfileContainer';
 import About from './Static/About';
 import FractalMachine from './Containers/FractalMachine';
 import Gallery from './Containers/Gallery';
@@ -13,13 +14,76 @@ import Form from './Components/Form';
 import NotFound from './Static/NotFound';
 
 class App extends React.Component {
+
+  state = {
+    user: {
+      username: "",
+      id: 0
+    },
+    token: ""
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+
+      fetch("http://localhost:4000/persist", {
+        headers: {
+          "Authorization": `Bearer ${localStorage.token}`
+        }
+      })
+        .then(r => r.json())
+        .then(this.handleResp)
+    }
+  }
+
+  handleResp = (resp) => {
+    if (resp.user) {
+      localStorage.token = resp.token
+      this.setState(resp, () => {
+        this.props.history.push("/")
+        console.log(this.state)
+      })
+    }
+    else {
+      alert(resp.error)
+    }
+  }
   
   handleLoginSubmit = (userInfo) => {
-    console.log(userInfo);
+    return fetch(`http://localhost:4000/login`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(userInfo)
+    })
+      .then(res => res.json())
+      .then(this.handleResp)
   }
 
   handleRegisterSubmit = (userInfo) => {
-    console.log(userInfo);
+    fetch('http://localhost:4000/users', {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(userInfo)
+    })
+    .then( resp => resp.json() )
+    .then( this.handleResp )
+  }
+
+  handleLogOut = () => {
+    localStorage.clear()
+    this.setState({
+        user: {
+          username: "",
+          id: 0
+        },
+        token: ""
+    }, () => {
+      this.props.history.push("/")
+    })
   }
 
   renderForm = (routerProps) => {
@@ -31,22 +95,19 @@ class App extends React.Component {
   }
 
   renderProfile = (routerProps) => {
-    console.log("I'm supposed to render the profile!")
-    // return  <ProfileContainer user={this.state.user} token={this.state.token} />
+    return  <ProfileContainer currentUser={this.state.user} token={this.state.token} />
   }
 
   render() {
     return (
       <div className="App">
-        <NavBar />
+        <NavBar currentUser={this.state.user} handleLogOut={this.handleLogOut} />
         <Switch>
           <Route path="/login" render={ this.renderForm } />
           <Route path="/register" render={ this.renderForm } />
           <Route path="/about" component={ About } />
           <Route path="/gallery" component={ Gallery } />
-          {/* Uncomment this when profile link is ready to be rendered to the DOM */}
-          {/* <Route path="/profile" render={ this.renderProfile } /> */}
-
+          <Route path="/profile" render={ this.renderProfile } />
           <Route path="/" exact component={ FractalMachine } />
           <Route component={NotFound} />
         </Switch>
