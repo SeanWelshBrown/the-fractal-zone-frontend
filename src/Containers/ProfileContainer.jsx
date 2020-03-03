@@ -5,7 +5,7 @@ import UserFractals from '../Components/UserFractals';
 const ProfileContainer = (props) => {
   return (
     <div>
-      <h3>Profile</h3>
+      <h2>Profile</h2>
       <Profile 
         currentUser={props.currentUser} 
       />

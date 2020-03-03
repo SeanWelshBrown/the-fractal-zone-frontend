@@ -91,6 +91,14 @@ class App extends React.Component {
     })
   }
 
+  handleSaveFractal = (newFractal) => {
+    let fractalArray = this.state.fractals.slice()
+    let newFractalArray = [...fractalArray, newFractal]
+    this.setState({
+      fractals: newFractalArray
+    })
+  }
+
   renderForm = (routerProps) => {
     if(routerProps.location.pathname === "/login"){
       return <Form formName="Login Form" handleSubmit={this.handleLoginSubmit}/>
@@ -109,6 +117,7 @@ class App extends React.Component {
     )
   }
 
+
   render() {
     return (
       <div className="App">
@@ -120,11 +129,16 @@ class App extends React.Component {
           <Route path="/login" render={ this.renderForm } />
           <Route path="/register" render={ this.renderForm } />
           <Route path="/about" component={ About } />
-          <Route path="/gallery" component={ Gallery } />
+          <Route path="/gallery">
+            <Gallery 
+              fractals={this.state.fractals}
+            />
+          </Route>
           <Route path="/profile" render={ this.renderProfile } />
           <Route path="/" exact>
             <FractalMachine 
               token={this.state.token} 
+              handleSaveFractal={this.handleSaveFractal}
             /> 
           </Route>
           <Route component={NotFound} />

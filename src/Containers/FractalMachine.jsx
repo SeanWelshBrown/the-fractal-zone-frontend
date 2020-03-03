@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FractalCanvas from '../Components/FractalCanvas';
 import FractalMachineInput from '../Components/FractalMachineInput';
+import saveCanvas from 'react-p5'
 
 const FractalMachine = (props) => {
 
@@ -35,6 +36,15 @@ const FractalMachine = (props) => {
                 fractal_type: "Triangle"
             })
         })
+        .then( r => r.json() )
+        .then( fractal => {
+            props.handleSaveFractal(fractal)
+        })
+    }
+
+    const exportFractal = (p5, e) => {
+        const dataURL = p5.canvas.toDataURL()
+        e.target.href = dataURL
     }
 
     return(
@@ -42,6 +52,7 @@ const FractalMachine = (props) => {
             <FractalCanvas 
                 size={sliderValue}
                 saveFractal={saveFractal}
+                exportFractal={exportFractal}
             />
             <FractalMachineInput 
                 userInputX={userInputX}

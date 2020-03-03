@@ -1,31 +1,22 @@
 import React from 'react';
-import SavedPattern from '../Components/SavedPattern';
+import FractalCard from '../Components/FractalCard';
 
 const Gallery = (props) => {
 
-    const savedPatternComponents = () => {
-        // this is just so there's some stuff on the page
-        let seedPatternComponents = []
-        for (let i = 0; i < 4; i++) {
-            seedPatternComponents.push(<SavedPattern />)
-        }
-        return seedPatternComponents
-
-        
-    //    return this.props.savedPatterns.map((savedPattern) => 
-    //        <SavedPattern />
-    //    )
-    
+    const renderAllFractals = () => {
+        return props.fractals.map( fractal => {
+            return <FractalCard key={fractal.id} fractal={fractal} context="gallery" />
+        })
     }
 
     return(
         <div className="gallery">
-            <h4>Here there will be saved patterns.</h4>
-            {savedPatternComponents()}
+            <h2>Gallery</h2>
+            {renderAllFractals()}
         </div>
     )
 
 
-} // end of Gallery fn
+}
 
 export default Gallery;

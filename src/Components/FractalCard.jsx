@@ -2,16 +2,26 @@ import React from 'react';
 
 const FractalCard = (props) => {
 
-  let { name, image, rule, fractal_type } = props.fractal
+  let { name, image, fractal_type, username } = props.fractal
 
-  return (
-    <div>
-      <img src={image} alt="Image of fractal" height="30%" width="30%" />
-      <p><strong>Name: </strong>{name}</p>
-      <p><strong>Rule: </strong>{rule}</p>
-      <p><strong>Fractal Type: </strong>{fractal_type}</p>
-    </div>
-  )
+  if (props.context === "gallery") {
+    return (
+      <div>
+        <img src={image} alt="a fractal" height="30%" width="30%" />
+        <p><strong>Name: </strong>{name}</p>
+        <p><strong>Fractal Type: </strong>{fractal_type}</p>
+        <p><strong>Created by: </strong>{username}</p>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <img src={image} alt="a fractal" height="30%" width="30%" />
+        <p><strong>Name: </strong>{name}</p>
+        <p><strong>Fractal Type: </strong>{fractal_type}</p>
+      </div>
+    )
+  }
 
 }
 

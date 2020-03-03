@@ -31,6 +31,10 @@ class FractalCanvas extends React.Component {
     handleInitialSave = () => {
         this.props.saveFractal(canvas);
     }
+
+    handleInitialExport = (e) => {
+        this.props.exportFractal(canvas, e);
+    }
     
     render() {
         return (
@@ -44,6 +48,8 @@ class FractalCanvas extends React.Component {
             sierpinksi={this.sierpinksi}
             />
             <button onClick={this.handleInitialSave}>Save fractal to gallery</button>
+            <br />
+            <button><a href="test" download="myCanvas.png" onClick={this.handleInitialExport}>Download fractal as .PNG file</a></button>
         </div>
         );
     }
