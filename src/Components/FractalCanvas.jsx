@@ -1,14 +1,16 @@
 import React from 'react';
 import Sketch from "react-p5"
 
-class FractalCanvas extends React.Component {
+let canvas;
 
+class FractalCanvas extends React.Component {
+    
     setup = (p5, canvasParentRef) => {
         p5.createCanvas(500, 500).parent(canvasParentRef); 
-        // this.sierpinksi(this.x1, this.y1, 400, p5)
     };
 
     draw = (p5) => {
+        canvas = p5;
         p5.background(255);
         let isBlue = false;
         const sierpinksi = (x, y, size) => {
@@ -26,6 +28,9 @@ class FractalCanvas extends React.Component {
         sierpinksi(25, 350, 450)
     };
     
+    handleInitialSave = () => {
+        this.props.saveFractal(canvas);
+    }
     
     render() {
         return (
@@ -38,6 +43,7 @@ class FractalCanvas extends React.Component {
             draw={this.draw}
             sierpinksi={this.sierpinksi}
             />
+            <button onClick={this.handleInitialSave}>Save fractal to gallery</button>
         </div>
         );
     }

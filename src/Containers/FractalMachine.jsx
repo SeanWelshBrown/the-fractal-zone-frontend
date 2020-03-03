@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FractalCanvas from '../Components/FractalCanvas';
 import FractalMachineInput from '../Components/FractalMachineInput';
 
-const FractalMachine = () => {
+const FractalMachine = (props) => {
 
     const [userInputX, setUserInputX] = useState();
     const [userInputY, setUserInputY] = useState();
@@ -20,10 +20,28 @@ const FractalMachine = () => {
         }
     }
 
+    const saveFractal = (p5) => {
+        const dataURL = p5.canvas.toDataURL()
+        fetch('http://localhost:4000/fractals', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "Authorization": `bearer ${props.token}`
+            },
+            body: JSON.stringify({
+                name: "",
+                image: dataURL,
+                rule: "",
+                fractal_type: "Triangle"
+            })
+        })
+    }
+
     return(
         <div>
             <FractalCanvas 
                 size={sliderValue}
+                saveFractal={saveFractal}
             />
             <FractalMachineInput 
                 userInputX={userInputX}

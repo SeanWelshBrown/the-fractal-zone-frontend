@@ -20,10 +20,15 @@ class App extends React.Component {
       username: "",
       id: 0
     },
-    token: ""
+    token: "",
+    fractals: []
   }
 
   componentDidMount() {
+    fetch('http://localhost:4000/fractals')
+    .then( r => r.json() )
+    .then( fractals => this.setState({ fractals: fractals }))
+
     if (localStorage.getItem("token")) {
 
       fetch("http://localhost:4000/persist", {
@@ -95,20 +100,33 @@ class App extends React.Component {
   }
 
   renderProfile = (routerProps) => {
-    return  <ProfileContainer currentUser={this.state.user} token={this.state.token} />
+    return  (
+      <ProfileContainer 
+        currentUser={this.state.user} 
+        token={this.state.token} 
+        fractals={this.state.fractals} 
+      />
+    )
   }
 
   render() {
     return (
       <div className="App">
-        <NavBar currentUser={this.state.user} handleLogOut={this.handleLogOut} />
+        <NavBar 
+          currentUser={this.state.user} 
+          handleLogOut={this.handleLogOut} 
+        />
         <Switch>
           <Route path="/login" render={ this.renderForm } />
           <Route path="/register" render={ this.renderForm } />
           <Route path="/about" component={ About } />
           <Route path="/gallery" component={ Gallery } />
           <Route path="/profile" render={ this.renderProfile } />
-          <Route path="/" exact component={ FractalMachine } />
+          <Route path="/" exact>
+            <FractalMachine 
+              token={this.state.token} 
+            /> 
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </div>
