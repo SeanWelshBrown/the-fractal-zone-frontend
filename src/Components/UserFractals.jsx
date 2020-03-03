@@ -21,7 +21,7 @@ const UserFractals = (props) => {
   }
 
   return (
-    <div>
+    <div className="fractalCardContainer" >
       {renderFractals()}
     </div>
   )

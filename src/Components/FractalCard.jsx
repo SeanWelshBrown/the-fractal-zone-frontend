@@ -16,8 +16,8 @@ const FractalCard = (props) => {
 
   if (props.context === "gallery") {
     return (
-      <div>
-        <img src={image} alt="a fractal" height="30%" width="30%" />
+      <div className="fractalCard">
+        <img src={image} alt="a fractal" />
         <p><strong>Name: </strong>{name}</p>
         <p><strong>Fractal Type: </strong>{fractal_type}</p>
         <p><strong>Created by: </strong>{username}</p>
@@ -25,11 +25,12 @@ const FractalCard = (props) => {
     )
   } else if (props.context === "profile") {
     return (
-      <div>
-        <img src={image} alt="a fractal" height="30%" width="30%" />
+      <div className="fractalCard">
+        <img src={image} alt="a fractal" />
         <p><strong>Name: </strong>{name}</p>
         <p><strong>Fractal Type: </strong>{fractal_type}</p>
         <button onClick={handleInitialDeleteFractal}>Delete</button>
+        <br /><br />
       </div>
     )
   }

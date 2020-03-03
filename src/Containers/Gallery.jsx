@@ -12,7 +12,9 @@ const Gallery = (props) => {
     return(
         <div className="gallery">
             <h2>Gallery</h2>
-            {renderAllFractals()}
+            <div className="fractalCardContainer" >
+                {renderAllFractals()}
+            </div>
         </div>
     )
 
