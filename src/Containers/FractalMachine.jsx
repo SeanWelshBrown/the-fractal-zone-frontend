@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import FractalCanvas from '../Components/FractalCanvas';
 import FractalMachineInput from '../Components/FractalMachineInput';
-import saveCanvas from 'react-p5'
 
 const FractalMachine = (props) => {
 
@@ -21,7 +20,7 @@ const FractalMachine = (props) => {
         }
     }
 
-    const saveFractal = (p5) => {
+    const saveFractal = (p5, fractalName) => {
         const dataURL = p5.canvas.toDataURL()
         fetch('http://localhost:4000/fractals', {
             method: "POST",
@@ -30,7 +29,7 @@ const FractalMachine = (props) => {
                 "Authorization": `bearer ${props.token}`
             },
             body: JSON.stringify({
-                name: "",
+                name: fractalName,
                 image: dataURL,
                 rule: "",
                 fractal_type: "Triangle"

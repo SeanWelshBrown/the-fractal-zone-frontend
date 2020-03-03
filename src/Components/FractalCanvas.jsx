@@ -1,9 +1,14 @@
 import React from 'react';
 import Sketch from "react-p5"
+import ModalForm from './ModalForm';
 
 let canvas;
 
 class FractalCanvas extends React.Component {
+
+    state = {
+        showModal: false
+    }
     
     setup = (p5, canvasParentRef) => {
         p5.createCanvas(500, 500).parent(canvasParentRef); 
@@ -27,9 +32,14 @@ class FractalCanvas extends React.Component {
         }
         sierpinksi(25, 350, 450)
     };
+
+    handleModalClick = () => {
+        this.setState({ showModal: !this.state.showModal })
+    }
     
-    handleInitialSave = () => {
-        this.props.saveFractal(canvas);
+    handleInitialSave = (fractalName) => {
+        this.props.saveFractal(canvas, fractalName);
+        this.setState({ showModal: !this.state.showModal })
     }
 
     handleInitialExport = (e) => {
@@ -47,7 +57,15 @@ class FractalCanvas extends React.Component {
             draw={this.draw}
             sierpinksi={this.sierpinksi}
             />
-            <button onClick={this.handleInitialSave}>Save fractal to gallery</button>
+            {(this.state.showModal ? 
+                <button onClick={this.handleModalClick}>Close form</button>
+                :
+                <button onClick={this.handleModalClick}>Save fractal to gallery</button>
+            )}
+            <ModalForm 
+                showModal={this.state.showModal} 
+                handleInitialSave={this.handleInitialSave}
+            />
             <br />
             <button><a href="test" download="myCanvas.png" onClick={this.handleInitialExport}>Download fractal as .PNG file</a></button>
         </div>
