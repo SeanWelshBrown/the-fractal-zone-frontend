@@ -9,7 +9,6 @@ const FractalMachine = (props) => {
     const [sliderValue, setSliderValue] = useState(225);
 
     const handleUserInput = (e) => {
-        console.log(e.target.value)
         let num = parseInt(e.target.value)
         if (e.target.name === "X") {
             setUserInputX(num)

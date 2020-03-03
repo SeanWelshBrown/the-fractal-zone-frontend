@@ -13,6 +13,7 @@ const ProfileContainer = (props) => {
       <UserFractals 
         currentUser={props.currentUser}
         fractals={props.fractals} 
+        handleDeleteFractal={props.handleDeleteFractal}
       />
     </div>
   )

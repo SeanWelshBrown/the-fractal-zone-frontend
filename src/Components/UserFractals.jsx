@@ -9,7 +9,14 @@ const UserFractals = (props) => {
 
   const renderFractals = () => {
     return userFractals.map( fractal => {
-      return <FractalCard key={fractal.id} fractal={fractal} />
+      return (
+        <FractalCard 
+          key={fractal.id} 
+          fractal={fractal} 
+          context="profile" 
+          handleDeleteFractal={props.handleDeleteFractal}
+        />
+      )
     })
   }
 

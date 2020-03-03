@@ -99,6 +99,11 @@ class App extends React.Component {
     })
   }
 
+  handleDeleteFractal = (fractalID) => {
+    let filteredFractalArr = this.state.fractals.filter( fractal => fractal.id !== fractalID )
+    this.setState({ fractals: filteredFractalArr })
+  }
+
   renderForm = (routerProps) => {
     if(routerProps.location.pathname === "/login"){
       return <Form formName="Login Form" handleSubmit={this.handleLoginSubmit}/>
@@ -113,6 +118,7 @@ class App extends React.Component {
         currentUser={this.state.user} 
         token={this.state.token} 
         fractals={this.state.fractals} 
+        handleDeleteFractal={this.handleDeleteFractal}
       />
     )
   }
