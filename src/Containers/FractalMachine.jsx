@@ -4,18 +4,36 @@ import FractalMachineInput from '../Components/FractalMachineInput';
 
 const FractalMachine = (props) => {
 
-    const [userInputX, setUserInputX] = useState();
-    const [userInputY, setUserInputY] = useState();
+    const [axiomValue, setAxiom] = useState("");
+    const [rule1Value, setrule1Value] = useState("");
+    const [rule2Value, setrule2Value] = useState("");
+    const [angleValue, setAngleValue] = useState("");
     const [sliderValue, setSliderValue] = useState(225);
 
     const handleUserInput = (e) => {
-        let num = parseInt(e.target.value)
-        if (e.target.name === "X") {
-            setUserInputX(num)
-        } else if (e.target.name === "Y") {
-            setUserInputY(num)
-        } else if (e.target.name === "slider") {
-            setSliderValue(num)
+        switch (e.target.name) {
+            case "axiom":
+                setAxiom(e.target.value)
+                break;
+            case "rule1":
+                setrule1Value(e.target.value)
+                break;
+            case "rule2":
+                setrule2Value(e.target.value)
+                break;
+            case "angle":
+                if (e.target.value === "") {
+                    setAngleValue(e.target.value)
+                    break;
+                } else {
+                    setAngleValue(parseInt(e.target.value))
+                    break;
+                }
+            case "slider":
+                setSliderValue(parseInt(e.target.value))
+                break;
+            default:
+                return null
         }
     }
 
@@ -57,8 +75,10 @@ const FractalMachine = (props) => {
                 exportFractal={exportFractal}
             />
             <FractalMachineInput 
-                userInputX={userInputX}
-                userInputY={userInputY}
+                axiomValue={axiomValue}
+                rule1Value={rule1Value}
+                rule2Value={rule2Value}
+                angleValue={angleValue}
                 sliderValue={sliderValue}
                 handleUserInput={handleUserInput}
             />

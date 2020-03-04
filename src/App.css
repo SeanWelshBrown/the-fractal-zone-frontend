@@ -1,6 +1,4 @@
-ul {
-  list-style: none;
-}
+/* Global styling */
 
 .App {
   text-align: center;
@@ -9,6 +7,10 @@ ul {
   flex-direction: column;
   background-color: #ffffff;
   background-image: linear-gradient(315deg, #ffffff 0%, #e8f3ff 74%);
+}
+
+ul {
+  list-style: none;
 }
 
 /* NavBar styling */
@@ -30,11 +32,21 @@ ul {
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { transform: scale(1.2); }
 
-/* end */
+/* Canvas/Fractal styling */
 
 canvas {
   border: 2px dotted darkblue;
 }
+
+/* .fractalButtons {
+  position: relative;
+  top: 130px;
+}
+
+.fractalInputContainer {
+  position: relative;
+  bottom: 50px
+} */
 
 /* Fractal Card styling */
 
@@ -60,5 +72,3 @@ canvas {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
-
-/* end */
