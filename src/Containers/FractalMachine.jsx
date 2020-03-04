@@ -9,7 +9,7 @@ const FractalMachine = (props) => {
     const [rule1Value, setrule1Value] = useState("");
     const [rule2Value, setrule2Value] = useState("");
     const [angleValue, setAngleValue] = useState("");
-    const [sliderValue, setSliderValue] = useState(225);
+    const [sliderValue, setSliderValue] = useState(1);
 
     const [currentCanvas, setCurrentCanvas] = useState()
 
@@ -44,7 +44,7 @@ const FractalMachine = (props) => {
     }
 
     const handleCanvasChange = (canvas) => {
-        setCurrentCanvas(canvas.canvas)
+        setCurrentCanvas(canvas)
     }
 
     const handleModalClick = () => {
@@ -93,9 +93,7 @@ const FractalMachine = (props) => {
         <div>
 
             <FractalCanvas 
-                size={sliderValue}
-                saveFractal={saveFractal}
-                exportFractal={exportFractal}
+                userInput={sliderValue}
                 handleCanvasChange={handleCanvasChange}
             />
 

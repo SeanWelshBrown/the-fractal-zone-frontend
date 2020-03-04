@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import {Route, Switch, Link} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 
 import ProfileContainer from './Containers/ProfileContainer';
@@ -25,6 +24,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    
     fetch('http://localhost:4000/fractals')
     .then( r => r.json() )
     .then( fractals => this.setState({ fractals: fractals }))
@@ -47,7 +47,6 @@ class App extends React.Component {
       this.setState(resp, () => {
         this.props.history.push("/")
         console.log(this.state)
-        console.log(JSON.parse(this.state.fractals[0].parameters))
       })
     }
     else {

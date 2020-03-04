@@ -52,9 +52,9 @@ const FractalMachineInput = (props) => {
             <input 
               type="range" 
               name="slider" 
-              min="10" 
-              max="225" 
-              step="5"
+              min="1" 
+              max="5" 
+              step="1"
               value={sliderValue} 
               onChange={handleUserInput} 
             />
