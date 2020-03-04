@@ -1,13 +1,20 @@
 import React from 'react';
-import Profile from '../Components/Profile'
+import Profile from '../Components/Profile';
+import UserFractals from '../Components/UserFractals';
 
 const ProfileContainer = (props) => {
   return (
     <div>
-      <h3>Profile Page</h3>
-      
-      <Profile currentUser={props.currentUser} />
-      {/* User's fractals go here for display/edit/deletion */}
+      <h2>Profile</h2>
+      <Profile 
+        currentUser={props.currentUser} 
+      />
+      <h5>Your fractals:</h5>
+      <UserFractals 
+        currentUser={props.currentUser}
+        fractals={props.fractals} 
+        handleDeleteFractal={props.handleDeleteFractal}
+      />
     </div>
   )
 }

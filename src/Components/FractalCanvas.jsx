@@ -2,8 +2,6 @@ import React from 'react';
 import p5 from 'p5';
 
 
-
-
 class FractalCanvas extends React.Component {
 
     
@@ -14,11 +12,13 @@ class FractalCanvas extends React.Component {
 
     componentDidMount() {
         this.myP5 = new p5 (this.sketch, this.myRef.current)
+        this.props.handleCanvasChange(this.myP5.canvas)
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.userInput !== this.props.userInput) {
             this.renderCanvas();
+            this.props.handleCanvasChange(this.myP5.canvas)
         }
     }
 
