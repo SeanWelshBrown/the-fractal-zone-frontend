@@ -7,17 +7,30 @@ ul {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #e8f3ff 74%);
+}
+
+/* NavBar styling */
+
+.navContainer {
+  border-bottom: 1px solid black;
 }
 
 .nav {
   display: flex;
   justify-content: space-evenly;
-  /* flex-direction: column; */
 }
 
 .nav a {
   text-decoration: none;
+  color: black;
 }
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.2); }
+
+/* end */
 
 canvas {
   border: 2px dotted darkblue;
@@ -31,20 +44,21 @@ canvas {
 }
 
 .fractalCard {
-  border: 3px solid black;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border: 2px solid black;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
   box-shadow: 7px 7px 10px grey;
   width: 30%;
   margin: auto;
 }
 
 .fractalCard img {
-  padding-top: 5px;
   height: 100%;
   width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
-/*  */
+/* end */

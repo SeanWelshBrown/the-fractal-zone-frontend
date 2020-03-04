@@ -127,10 +127,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <NavBar 
-          currentUser={this.state.user} 
-          handleLogOut={this.handleLogOut} 
-        />
+        <div className="navContainer">
+          <NavBar 
+            currentUser={this.state.user} 
+            handleLogOut={this.handleLogOut} 
+          />
+        </div>
         <Switch>
           <Route path="/login" render={ this.renderForm } />
           <Route path="/register" render={ this.renderForm } />

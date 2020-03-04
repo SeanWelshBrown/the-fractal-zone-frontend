@@ -35,8 +35,12 @@ const FractalMachine = (props) => {
             })
         })
         .then( r => r.json() )
-        .then( fractal => {
-            props.handleSaveFractal(fractal)
+        .then( response => {
+            if (response.message) {
+                alert(response.message)
+            } else {
+                props.handleSaveFractal(response)
+            }
         })
     }
 
