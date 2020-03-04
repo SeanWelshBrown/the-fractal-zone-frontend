@@ -112,6 +112,7 @@ class FractalCanvas extends React.Component {
             const translateX = (500 / initLen) + this.factorial(initLen) * translateNum
             const translateY = translateX
             console.log(translateX)
+            p.background(255)
             p.resetMatrix()
             p.translate(translateX, translateX)
             p.scale( translateNum * 0.1 )
