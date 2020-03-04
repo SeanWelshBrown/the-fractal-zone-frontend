@@ -6,10 +6,9 @@ const FractalMachine = () => {
 
     const [userInputX, setUserInputX] = useState();
     const [userInputY, setUserInputY] = useState();
-    const [sliderValue, setSliderValue] = useState(225);
+    const [sliderValue, setSliderValue] = useState(1);
 
     const handleUserInput = (e) => {
-        console.log(e.target.value)
         let num = parseInt(e.target.value)
         if (e.target.name === "X") {
             setUserInputX(num)
@@ -23,7 +22,7 @@ const FractalMachine = () => {
     return(
         <div>
             <FractalCanvas 
-                size={sliderValue}
+                userInput={sliderValue}
             />
             <FractalMachineInput 
                 userInputX={userInputX}
