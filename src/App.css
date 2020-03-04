@@ -38,14 +38,22 @@ canvas {
   border: 2px dotted darkblue;
 }
 
-/* .fractalButtons {
-  position: relative;
-  top: 130px;
+.fractalButtons {
+  margin-top: 3px;
+}
+.fractalButtons span {
+  display: block;
+}
+.fractalButtons button {
+  margin-top: 10px;
 }
 
 .fractalInputContainer {
-  position: relative;
-  bottom: 50px
+  margin-top: -12px
+}
+
+/* .fractalInputs {
+
 } */
 
 /* Fractal Card styling */

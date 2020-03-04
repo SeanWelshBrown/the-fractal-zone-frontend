@@ -10,7 +10,7 @@ const ModalForm = (props) => {
 
   const handleInitialSubmit = (e) => {
     e.preventDefault()
-    props.handleInitialSave(fractalName)
+    props.saveFractal(fractalName)
     setFractalName("")
   }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FractalCanvas from '../Components/FractalCanvas';
 import FractalMachineInput from '../Components/FractalMachineInput';
+import ModalForm from '../Components/ModalForm'
 
 const FractalMachine = (props) => {
 
@@ -9,6 +10,11 @@ const FractalMachine = (props) => {
     const [rule2Value, setrule2Value] = useState("");
     const [angleValue, setAngleValue] = useState("");
     const [sliderValue, setSliderValue] = useState(225);
+
+    const [currentCanvas, setCurrentCanvas] = useState()
+
+    const [showModal, setShowModal] = useState(false)
+
 
     const handleUserInput = (e) => {
         switch (e.target.name) {
@@ -37,8 +43,17 @@ const FractalMachine = (props) => {
         }
     }
 
-    const saveFractal = (p5, fractalName) => {
-        const dataURL = p5.canvas.toDataURL()
+    const handleCanvasChange = (canvas) => {
+        setCurrentCanvas(canvas.canvas)
+    }
+
+    const handleModalClick = () => {
+        setShowModal(!showModal)
+    }
+
+    const saveFractal = (fractalName) => {
+        setShowModal(!showModal)
+        const dataURL = currentCanvas.toDataURL()
         fetch('http://localhost:4000/fractals', {
             method: "POST",
             headers: {
@@ -62,18 +77,21 @@ const FractalMachine = (props) => {
         })
     }
 
-    const exportFractal = (p5, e) => {
-        const dataURL = p5.canvas.toDataURL()
+    const exportFractal = (e) => {
+        const dataURL = currentCanvas.toDataURL()
         e.target.href = dataURL
     }
 
     return(
         <div>
+
             <FractalCanvas 
                 size={sliderValue}
                 saveFractal={saveFractal}
                 exportFractal={exportFractal}
+                handleCanvasChange={handleCanvasChange}
             />
+
             <FractalMachineInput 
                 axiomValue={axiomValue}
                 rule1Value={rule1Value}
@@ -82,8 +100,28 @@ const FractalMachine = (props) => {
                 sliderValue={sliderValue}
                 handleUserInput={handleUserInput}
             />
+            
+            <div className="fractalButtons">
+                <span>
+                    {(showModal ? 
+                        <button onClick={handleModalClick}>Close form</button>
+                        :
+                        <button onClick={handleModalClick}>Save fractal to gallery</button>
+                    )}
+                </span>
+                <span>
+                    <ModalForm 
+                        showModal={showModal} 
+                        saveFractal={saveFractal}
+                    />
+                </span>
+                <span>
+                    <button><a href="test" download="myCanvas.png" onClick={exportFractal}>Download fractal as .PNG file</a></button>
+                </span>
+            </div>
+
         </div>
     )
-} // end of FractalMachine fn
+}
 
 export default FractalMachine;
