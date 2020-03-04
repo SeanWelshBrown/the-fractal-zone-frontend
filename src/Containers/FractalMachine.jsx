@@ -63,8 +63,15 @@ const FractalMachine = (props) => {
             body: JSON.stringify({
                 name: fractalName,
                 image: dataURL,
-                rule: "",
-                fractal_type: "Triangle"
+                parameters: {
+                    theta: angleValue,
+                    length: sliderValue,
+                    rules: {
+                        axiom: axiomValue,
+                        setA: rule1Value,
+                        setB: rule2Value
+                    }
+                }
             })
         })
         .then( r => r.json() )

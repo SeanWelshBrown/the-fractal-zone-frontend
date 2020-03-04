@@ -47,6 +47,7 @@ class App extends React.Component {
       this.setState(resp, () => {
         this.props.history.push("/")
         console.log(this.state)
+        console.log(JSON.parse(this.state.fractals[0].parameters))
       })
     }
     else {

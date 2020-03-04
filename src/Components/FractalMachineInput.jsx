@@ -48,6 +48,7 @@ const FractalMachineInput = (props) => {
               onChange={handleUserInput} 
             />
             
+            <label>Length: </label>
             <input 
               type="range" 
               name="slider" 
