@@ -166,6 +166,7 @@ canvas {
   transition: all .2s ease-in-out;
   background-color: whitesmoke;
   cursor: pointer;
+  
 }
 
 .fractalCard:hover {
@@ -177,7 +178,7 @@ canvas {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   height: 77%;
-  width: 98%;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.753);
 }
 
