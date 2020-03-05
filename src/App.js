@@ -29,11 +29,13 @@ class App extends React.Component {
     fetch('http://localhost:4000/fractals')
     .then( r => r.json() )
     .then( fractals => {
-      let parsedFractals = fractals.map( fractal => {
-        fractal.parameters = JSON.parse(fractal.parameters)
-        return fractal
-      })
-      this.setState({ fractals: parsedFractals })
+      if (fractals.length > 0) {
+        let parsedFractals = fractals.map( fractal => {
+          fractal.parameters = JSON.parse(fractal.parameters)
+          return fractal
+        })
+        this.setState({ fractals: parsedFractals })
+      }
     })
 
     if (localStorage.getItem("token")) {
@@ -100,10 +102,11 @@ class App extends React.Component {
 
   handleSaveFractal = (newFractal) => {
     let fractalArray = this.state.fractals.slice()
+    newFractal.parameters = JSON.parse(newFractal.parameters)
     let newFractalArray = [...fractalArray, newFractal]
     this.setState({
       fractals: newFractalArray
-    })
+    }, () => console.log(this.state))
   }
 
   handleDeleteFractal = (fractalID) => {
