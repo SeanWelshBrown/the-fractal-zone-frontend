@@ -15,9 +15,17 @@ class FractalCanvas extends React.Component {
         this.props.handleCanvasChange(this.myP5.canvas)
     }
 
+    shouldComponentUpdate(prevProps) {
+        if (prevProps.showModal !== this.props.showModal) {
+            return false
+        } else {
+            return true
+        }
+    }
+
     componentDidUpdate(prevProps) {
-        if (prevProps !== this.props) {
-            this.myP5.loading();
+        if (prevProps !== this.props && this.myP5._setupDone) {
+            // this.myP5.loading();
             setTimeout(this.renderCanvas, 1500);
             this.props.handleCanvasChange(this.myP5.canvas)
         }
@@ -48,8 +56,10 @@ class FractalCanvas extends React.Component {
           rules.setG = rules.setG = this.props.ruleSetG.split("");
         }
     
-        fractalArr = this.calculateLSystem(n, rules);
-        this.myP5.drawLSystem(fractalArr, len, theta);
+        if (this.myP5) {
+            fractalArr = this.calculateLSystem(n, rules);
+            this.myP5.drawLSystem(fractalArr, len, theta);
+        }
         
     }
 
@@ -146,8 +156,7 @@ class FractalCanvas extends React.Component {
     
 
 
-    render() {    
-        console.log(this.props)    
+    render() {       
         return (
             <>
             <h2>Henlo, I am the canvas!</h2>

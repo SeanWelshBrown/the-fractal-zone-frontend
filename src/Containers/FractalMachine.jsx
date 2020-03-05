@@ -17,29 +17,16 @@ const FractalMachine = (props) => {
     const [showModal, setShowModal] = useState(false)
 
 
-    const handleUserInput = (e) => {
-        switch (e.target.name) {
-            case "size":
-                setSizeValue(parseInt(e.target.value))
-                break;
-            case "axiom":
-                setAxiom(e.target.value)
-                break;
-            case "ruleF":
-                setRuleFValue(e.target.value)
-                break;
-            case "ruleG":
-                setRuleGValue(e.target.value)
-                break;
-            case "theta":
-                setThetaValue(parseInt(e.target.value))
-                break;
-            case "length":
-                setLengthValue(parseInt(e.target.value))
-                break;
-            default:
-                return null
-        }
+    const handleFormSubmit = (e, nValue, thetaValue, axiomValue, initLenValue, setFValue, setGValue) => {
+        e.preventDefault()
+        setSizeValue(nValue.current.value)
+        setThetaValue(thetaValue.current.value)
+        setAxiom(axiomValue.current.value)
+        setLengthValue(initLenValue.current.value)
+        setRuleFValue(setFValue.current.value)
+        setRuleGValue(setGValue.current.value)
+
+        
     }
 
     const handleCanvasChange = (canvas) => {
@@ -99,6 +86,7 @@ const FractalMachine = (props) => {
                 initLen={initLen}
                 setF={setF}
                 setG={setG}
+                showModal={showModal}
 
                 handleCanvasChange={handleCanvasChange}
             />
@@ -111,7 +99,7 @@ const FractalMachine = (props) => {
                 setF={setF}
                 setG={setG}
 
-                handleUserInput={handleUserInput}
+                handleFormSubmit={handleFormSubmit}
             />
             
             <div className="fractalButtons">

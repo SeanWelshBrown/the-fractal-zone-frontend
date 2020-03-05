@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const FractalMachineInput = (props) => {
   
-    let { n, theta, axiom, initLen, setF, setG, handleUserInput } = props;
+    let { n, theta, axiom, initLen, setF, setG, handleFormSubmit} = props;
+
+    const nValue = useRef();
+    const thetaValue = useRef();
+    const axiomValue = useRef();
+    const initLenValue = useRef();
+    const setFValue = useRef();
+    const setGValue = useRef();
+
 
     return (
         <div className="fractalInputContainer">
@@ -12,69 +20,74 @@ const FractalMachineInput = (props) => {
 
           <div className="fractalInputs">
 
+          <form className="fractalInputForm" onSubmit={(e) => {handleFormSubmit(e, nValue, thetaValue, axiomValue, initLenValue, setFValue, setGValue)}}>
             <label>Axiom: </label>
             <input 
-              key="axiom"
+              key={axiom}
+              ref={axiomValue}
               type="text" 
               name="axiom" 
               placeholder="Enter an Axiom..." 
-              value={axiom} 
-              onChange={handleUserInput} 
+              defaultValue={axiom} 
             />
             
             <label>Rule F: </label>
             <input 
-              key="ruleF"
+              key={setF}
+              ref={setFValue}
               type="text" 
               name="ruleF" 
               placeholder="Enter a first rule..." 
-              value={setF} 
-              onChange={handleUserInput} 
+              defaultValue={setF}  
             />
             
             <label>Rule G: </label>
             <input 
-              key="ruleG"
+              key={setG}
+              ref={setGValue}
               type="text" 
               name="ruleG" 
               placeholder="(optional)"
-              value={setG} 
-              onChange={handleUserInput} 
+              defaultValue={setG} 
             />
             
             <label>Theta: </label>
             <input 
-              key="theta"
+              key={theta}
+              ref={thetaValue}
               type="number" 
               name="theta" 
               placeholder="Enter an angle..." 
-              value={theta} 
-              onChange={handleUserInput} 
+              defaultValue={theta}  
             />
             
             <label>Length: </label>
             <input 
-              key="length"
+              key={initLen}
+              ref={initLenValue}
               type="range" 
               name="length" 
               min="100" 
               max="500" 
               step="25"
-              value={initLen} 
-              onChange={handleUserInput} 
+              defaultValue={initLen} 
             />
 
            <label>Size: </label>
             <input 
-              key="size"
+              key={n}
+              ref={nValue}
               type="range" 
               name="size" 
               min="1" 
               max="6" 
               step="1"
-              value={n} 
-              onChange={handleUserInput} 
+              defaultValue={n} 
             />
+
+            <input type="submit" value="Submit" />
+            
+          </form>
 
           </div>
 

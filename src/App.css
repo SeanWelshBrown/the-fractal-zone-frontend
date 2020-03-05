@@ -135,7 +135,12 @@ canvas {
 }
 
 .fractalInputContainer {
-  margin-top: -12px
+  margin-top: -12px;
+}
+
+.fractalInputs {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Fractal Card styling */
