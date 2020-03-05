@@ -110,7 +110,7 @@ class FractalCanvas extends React.Component {
             const fractalArrLen = fractalArr.length
             const randomCol = '#'+Math.floor(Math.random()*16777215).toString(16);
             const translateX = (500 / initLen) + this.factorial(initLen) * translateNum
-            const translateY = translateX
+            // const translateY = translateX
             console.log(translateX)
             p.background(255)
             p.resetMatrix()

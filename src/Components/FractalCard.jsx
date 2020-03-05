@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FractalCard = (props) => {
 
-  let { id, name, image, username } = props.fractal
+  const [isClicked, setClicked] = useState(false)
+
+  let { id, name, image, username, parameters } = props.fractal
 
   const handleInitialDeleteFractal = () => {
     fetch(`http://localhost:4000/fractals/${id}`, {
@@ -14,23 +16,65 @@ const FractalCard = (props) => {
     .then( () => props.handleDeleteFractal(id) )
   }
 
+  const handleCardClick = () => {
+    setClicked(!isClicked)
+  }
+
   if (props.context === "gallery") {
-    return (
-      <div className="fractalCard">
-        <img src={image} alt="a fractal" />
-        <p><strong>Name: </strong>{name}</p>
-        <p><strong>Created by: </strong>{username}</p>
-      </div>
-    )
+
+    if (isClicked === false) {
+      return (
+        <div className="fractalCard" onClick={handleCardClick}>
+          <img src={image} alt="a fractal" />
+          <p><strong>Name: </strong>{name}</p>
+          <p><strong>Created by: </strong>{username}</p>
+        </div>
+      )
+    } else if (isClicked === true) {
+      return (
+        <div className="fractalCard" onClick={handleCardClick}>
+          <div className="extraCardInfoDiv">
+            <p><strong>Theta: </strong>{parameters.theta}</p>
+            <p><strong>Length: </strong>{parameters.length}</p>
+            <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
+            <p><strong>Ruleset A: </strong>{parameters.rules.setA}</p>
+            <p><strong>Ruleset B: </strong>{parameters.rules.setB}</p>
+          </div>
+          <img src={image} alt="a fractal" />
+          <p><strong>Name: </strong>{name}</p>
+          <p><strong>Created by: </strong>{username}</p>
+        </div>
+      )
+    }
+
   } else if (props.context === "profile") {
-    return (
-      <div className="fractalCard">
-        <img src={image} alt="a fractal" />
-        <p><strong>Name: </strong>{name}</p>
-        <button onClick={handleInitialDeleteFractal}>Delete</button>
-        <br /><br />
-      </div>
-    )
+
+    if (isClicked === false) {
+      return (
+        <div className="fractalCard" onClick={handleCardClick}>
+          <img src={image} alt="a fractal" />
+          <p><strong>Name: </strong>{name}</p>
+          <button className="deleteBtn" onClick={handleInitialDeleteFractal}>Delete</button>
+          <br /><br />
+        </div>
+      )
+    } else if (isClicked === true) {
+      return (
+        <div className="fractalCard" onClick={handleCardClick}>
+          <div className="extraCardInfoDiv">
+            <p><strong>Theta: </strong>{parameters.theta}</p>
+            <p><strong>Length: </strong>{parameters.length}</p>
+            <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
+            <p><strong>Ruleset A: </strong>{parameters.rules.setA}</p>
+            <p><strong>Ruleset B: </strong>{parameters.rules.setB}</p>
+          </div>
+          <img src={image} alt="a fractal" />
+          <p><strong>Name: </strong>{name}</p>
+          <button className="deleteBtn" onClick={handleInitialDeleteFractal}>Delete</button>
+          <br /><br />
+        </div>
+      )
+    }
   }
 
 }
