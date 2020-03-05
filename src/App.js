@@ -11,6 +11,7 @@ import Gallery from './Containers/Gallery';
 import NavBar from './Components/NavBar'
 import Form from './Components/Form';
 import NotFound from './Static/NotFound';
+import Footer from './Static/Footer'
 
 class App extends React.Component {
 
@@ -27,7 +28,15 @@ class App extends React.Component {
     
     fetch('http://localhost:4000/fractals')
     .then( r => r.json() )
-    .then( fractals => this.setState({ fractals: fractals }))
+    .then( fractals => {
+      if (fractals.length > 0) {
+        let parsedFractals = fractals.map( fractal => {
+          fractal.parameters = JSON.parse(fractal.parameters)
+          return fractal
+        })
+        this.setState({ fractals: parsedFractals })
+      }
+    })
 
     if (localStorage.getItem("token")) {
 
@@ -93,10 +102,11 @@ class App extends React.Component {
 
   handleSaveFractal = (newFractal) => {
     let fractalArray = this.state.fractals.slice()
+    newFractal.parameters = JSON.parse(newFractal.parameters)
     let newFractalArray = [...fractalArray, newFractal]
     this.setState({
       fractals: newFractalArray
-    })
+    }, () => console.log(this.state))
   }
 
   handleDeleteFractal = (fractalID) => {
@@ -133,24 +143,27 @@ class App extends React.Component {
             handleLogOut={this.handleLogOut} 
           />
         </div>
-        <Switch>
-          <Route path="/login" render={ this.renderForm } />
-          <Route path="/register" render={ this.renderForm } />
-          <Route path="/about" component={ About } />
-          <Route path="/gallery">
-            <Gallery 
-              fractals={this.state.fractals}
-            />
-          </Route>
-          <Route path="/profile" render={ this.renderProfile } />
-          <Route path="/" exact>
-            <FractalMachine 
-              token={this.state.token} 
-              handleSaveFractal={this.handleSaveFractal}
-            /> 
-          </Route>
-          <Route component={NotFound} />
-        </Switch>
+        <div className="mainContent">
+          <Switch>
+            <Route path="/login" render={ this.renderForm } />
+            <Route path="/register" render={ this.renderForm } />
+            <Route path="/about" component={ About } />
+            <Route path="/gallery">
+              <Gallery 
+                fractals={this.state.fractals}
+              />
+            </Route>
+            <Route path="/profile" render={ this.renderProfile } />
+            <Route path="/" exact>
+              <FractalMachine 
+                token={this.state.token} 
+                handleSaveFractal={this.handleSaveFractal}
+              /> 
+            </Route>
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+        <Footer />
       </div>
     );
   }

@@ -5,18 +5,71 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  background-image: linear-gradient(315deg, #ffffff 0%, #e8f3ff 74%);
+}
+
+.mainContent {
+  overflow: scroll;
+  padding-bottom: 45px;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* background-color: #a2a59db9; */
+  /* background-color: #f4db5db6; */
+  background-color: #669b9031;
+  /* background-color: #f27491a8; */
+
+  /* background-color: #ffffff; */
+  background-image: linear-gradient(180deg, #669b9031 0%, #e0eaf5 74%);
 }
 
 ul {
   list-style: none;
 }
 
+button {
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.deleteBtn {
+  width: 70px;
+  height: 25px;
+  font-size: 12px;
+}
+
+input {
+  border-radius: 5px;
+  
+}
+
 /* NavBar styling */
 
 .navContainer {
   border-bottom: 1px solid black;
+
+  /* background-color: #dbbe90b7; */
+  /* background-color: #f27491a8; */
+  /* background-color: #da978bc2; */
+  background-color: #3f454a;
 }
 
 .nav {
@@ -26,16 +79,49 @@ ul {
 
 .nav a {
   text-decoration: none;
-  color: black;
+  color: white;
+  font-size: 1.06em;
 }
 
 .grow { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.2); }
+.grow:hover { transform: scale(1.15); }
 
-/* Canvas/Fractal styling */
+/* Footer styling */
+
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #3f454a;
+  color: white;
+  border-top: 1px solid black;
+}
+
+.footer p {
+  font-size: 14px;
+  text-align: right;
+  margin-top: 5px;
+  margin-right: 70px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: rgb(255, 173, 186);
+  transition: all .2s ease-in-out;
+}
+
+.footer a:hover {
+  /* transform: scale(1.2); */
+  color: aquamarine;
+}
+
+/* Canvas/Fractal-Input styling */
 
 canvas {
-  border: 2px dotted darkblue;
+  border: 2px dotted black;
 }
 
 .fractalButtons {
@@ -52,26 +138,47 @@ canvas {
   margin-top: -12px
 }
 
-/* .fractalInputs {
-
-} */
-
 /* Fractal Card styling */
 
 .fractalCardContainer {
   display: flex;
-  align-items: center;
+  flex-flow: row wrap;
+  /* align-items: center; */
+  /* flex-wrap: wrap; */
 }
 
 .fractalCard {
+  position: relative;
   border: 2px solid black;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   box-shadow: 7px 7px 10px grey;
-  width: 30%;
+  width: 26%;
   margin: auto;
+  margin-bottom: 30px;
+  transition: all .2s ease-in-out;
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.fractalCard:hover {
+  transform: scale(1.03);
+}
+
+.extraCardInfoDiv {
+  position: absolute;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 77%;
+  width: 98%;
+  background-color: rgba(255, 255, 255, 0.753);
+}
+
+.extraCardInfoDiv p {
+  text-align: center;
+  margin-top: 11%;
 }
 
 .fractalCard img {
@@ -79,4 +186,6 @@ canvas {
   width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-bottom: 1px solid black;
 }
+
