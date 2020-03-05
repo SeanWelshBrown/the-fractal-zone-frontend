@@ -5,11 +5,12 @@ import ModalForm from '../Components/ModalForm'
 
 const FractalMachine = (props) => {
 
-    const [axiomValue, setAxiom] = useState("");
-    const [rule1Value, setrule1Value] = useState("");
-    const [rule2Value, setrule2Value] = useState("");
-    const [angleValue, setAngleValue] = useState("");
-    const [sliderValue, setSliderValue] = useState(1);
+    const [axiom, setAxiom] = useState("F");
+    const [setF, setRuleFValue] = useState("FF+[+F-F-F]-[-F+F+F]");
+    const [setG, setRuleGValue] = useState("");
+    const [theta, setThetaValue] = useState(20);
+    const [initLen, setLengthValue] = useState(200);
+    const [n, setSizeValue] = useState(1);
 
     const [currentCanvas, setCurrentCanvas] = useState()
 
@@ -18,25 +19,23 @@ const FractalMachine = (props) => {
 
     const handleUserInput = (e) => {
         switch (e.target.name) {
+            case "size":
+                setSizeValue(parseInt(e.target.value))
+                break;
             case "axiom":
                 setAxiom(e.target.value)
                 break;
-            case "rule1":
-                setrule1Value(e.target.value)
+            case "ruleF":
+                setRuleFValue(e.target.value)
                 break;
-            case "rule2":
-                setrule2Value(e.target.value)
+            case "ruleG":
+                setRuleGValue(e.target.value)
                 break;
-            case "angle":
-                if (e.target.value === "") {
-                    setAngleValue(e.target.value)
-                    break;
-                } else {
-                    setAngleValue(parseInt(e.target.value))
-                    break;
-                }
-            case "slider":
-                setSliderValue(parseInt(e.target.value))
+            case "theta":
+                setThetaValue(parseInt(e.target.value))
+                break;
+            case "length":
+                setLengthValue(parseInt(e.target.value))
                 break;
             default:
                 return null
@@ -64,12 +63,13 @@ const FractalMachine = (props) => {
                 name: fractalName,
                 image: dataURL,
                 parameters: {
-                    theta: angleValue,
-                    length: sliderValue,
+                    theta: theta,
+                    length: initLen,
+                    size: n,
                     rules: {
-                        axiom: axiomValue,
-                        setA: rule1Value,
-                        setB: rule2Value
+                        axiom: axiom,
+                        setF: setF,
+                        setG: setG
                     }
                 }
             })
@@ -93,16 +93,24 @@ const FractalMachine = (props) => {
         <div>
 
             <FractalCanvas 
-                userInput={sliderValue}
+                n={n}
+                theta={theta}
+                axiom={axiom}
+                initLen={initLen}
+                setF={setF}
+                setG={setG}
+
                 handleCanvasChange={handleCanvasChange}
             />
 
             <FractalMachineInput 
-                axiomValue={axiomValue}
-                rule1Value={rule1Value}
-                rule2Value={rule2Value}
-                angleValue={angleValue}
-                sliderValue={sliderValue}
+                n={n}
+                theta={theta}
+                axiom={axiom}
+                initLen={initLen}
+                setF={setF}
+                setG={setG}
+
                 handleUserInput={handleUserInput}
             />
             

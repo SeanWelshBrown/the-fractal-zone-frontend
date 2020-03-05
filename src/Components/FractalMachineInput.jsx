@@ -2,63 +2,79 @@ import React from 'react';
 
 const FractalMachineInput = (props) => {
   
-    let { axiomValue, rule1Value, rule2Value, angleValue, sliderValue, handleUserInput } = props
+    let { n, theta, axiom, initLen, setF, setG, handleUserInput } = props;
 
     return (
         <div className="fractalInputContainer">
 
-          <h3>Input!</h3>
-          <p>This is where the user will give input to make a fractal.</p>
+          <h3> --~Make a Fractal~-- </h3>
+          <p> Make something beautiful. </p>
 
           <div className="fractalInputs">
 
             <label>Axiom: </label>
             <input 
+              key="axiom"
               type="text" 
               name="axiom" 
               placeholder="Enter an Axiom..." 
-              value={axiomValue} 
+              value={axiom} 
               onChange={handleUserInput} 
             />
             
-            <label>Rule 1: </label>
+            <label>Rule F: </label>
             <input 
+              key="ruleF"
               type="text" 
-              name="rule1" 
+              name="ruleF" 
               placeholder="Enter a first rule..." 
-              value={rule1Value} 
+              value={setF} 
               onChange={handleUserInput} 
             />
             
-            <label>Rule 2: </label>
+            <label>Rule G: </label>
             <input 
+              key="ruleG"
               type="text" 
-              name="rule2" 
-              placeholder="Enter a second rule..." 
-              value={rule2Value} 
+              name="ruleG" 
+              placeholder="(optional)"
+              value={setG} 
               onChange={handleUserInput} 
             />
             
-            <label>Angle: </label>
+            <label>Theta: </label>
             <input 
+              key="theta"
               type="number" 
-              name="angle" 
+              name="theta" 
               placeholder="Enter an angle..." 
-              value={angleValue} 
+              value={theta} 
               onChange={handleUserInput} 
             />
             
             <label>Length: </label>
             <input 
+              key="length"
               type="range" 
-              name="slider" 
-              min="1" 
-              max="5" 
-              step="1"
-              value={sliderValue} 
+              name="length" 
+              min="100" 
+              max="500" 
+              step="25"
+              value={initLen} 
               onChange={handleUserInput} 
             />
-            
+
+           <label>Size: </label>
+            <input 
+              key="size"
+              type="range" 
+              name="size" 
+              min="1" 
+              max="6" 
+              step="1"
+              value={n} 
+              onChange={handleUserInput} 
+            />
 
           </div>
 

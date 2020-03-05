@@ -1,10 +1,10 @@
 import React from 'react';
 import p5 from 'p5';
 
+const COLORS = ["#754687", "#465a87", "#c94f96", "#ebaa28", "#73a157", "#52afb3", "#d42f50", "#edc234", "#ff7340"]
 
 class FractalCanvas extends React.Component {
 
-    
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
@@ -16,59 +16,57 @@ class FractalCanvas extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.userInput !== this.props.userInput) {
-            this.renderCanvas();
+        if (prevProps !== this.props) {
+            this.myP5.loading();
+            setTimeout(this.renderCanvas, 1500);
             this.props.handleCanvasChange(this.myP5.canvas)
         }
     }
 
-    calculateTranslateNum = (ruleSet) => {
-        let count = 0;
-        ruleSet.forEach((ruleEl) => { 
-            if (ruleEl === 'A' || ruleEl === 'B') {
-                count++
-            }
-        })
-        return count;
+    calculateCurrentLen = (n, len) => {
+        let calculatedLen = len;
+        for (let i = 0; i < n; i++) {
+            calculatedLen *= 0.5
+        }
+        return calculatedLen;
     }
-    renderCanvas = () => {
-        let n = this.props.userInput;
 
+    renderCanvas = () => {
+
+        let {n, theta, axiom, initLen, setF, setG} = this.props
+        
         let fractalArr;
-        const min = 1;
-        const theta = 90;
+        let len = this.calculateCurrentLen(n, initLen);
+
         const rules = {
-            axiom: "",
-            setA: [],
-            setB: []
+            axiom: axiom.split(""),
+            setF: setF.split(""),
+            setG: []
         }
      
-
-        rules.axiom = "A-A-A-A".split("")
-        rules.setA = "AA-A+A-A-AA".split("")
-       
-        const translateNum = this.calculateTranslateNum(rules.setA)
-
-        this.myP5.clear()
-
-        if (n > min) {
-            fractalArr = this.calculateLSystem(n, rules)
-            this.myP5.drawLSystem(fractalArr, n, 8, theta, min, translateNum);
-        } 
+        if (setG) {
+          rules.setG = rules.setG = this.props.ruleSetG.split("");
+        }
+    
+        fractalArr = this.calculateLSystem(n, rules);
+        this.myP5.drawLSystem(fractalArr, len, theta);
+        
     }
 
+ 
     calculateLSystem = (n, rules) => {
         let nextFractalArr = [];
-        if (n === 0) {
+         if (n === 1) {
             return rules.axiom;
         } else {
-          	let fractalArr = this.calculateLSystem(n - 1, rules);
+            let fractalArr = this.calculateLSystem(n - 1, rules);
+        
             fractalArr.forEach((el) => {
-                if (el === 'A') {
-                    let tempFractalArr = rules.setA;
+                if (el === 'F') {
+                    let tempFractalArr = rules.setF;
                     tempFractalArr.forEach((ruleEl) => {nextFractalArr.push(ruleEl)});
-                } else if (el === 'B') {
-                    let tempFractalArr = rules.setB;
+                } else if (el === 'G') {
+                    let tempFractalArr = rules.setG;
                     tempFractalArr.forEach((ruleEl) => {nextFractalArr.push(ruleEl)});
                 } else if (el === '+') {
                     nextFractalArr.push(el);
@@ -93,73 +91,67 @@ class FractalCanvas extends React.Component {
     }
 
 
+
     sketch = (p) => {
+
         p.setup = () => {
             p.createCanvas(500, 500);
             p.background(255);
             p.angleMode(p.DEGREES)
-            p.frameRate(15)
+            this.renderCanvas()
         }
 
-        p.drawAThing = (segLen) => {
-            p.clear()
-            p.rect(150,150,segLen*10,segLen*10)
-        }
-
-        p.drawLSystem = (fractalArr, initLen, segLen, theta, minSegLen, translateNum) => {
+        p.drawLSystem = (fractalArr, segLen, theta) => {
+            const randomCol = COLORS[Math.floor(Math.random() * COLORS.length)]
             const fractalArrLen = fractalArr.length
-            const randomCol = '#'+Math.floor(Math.random()*16777215).toString(16);
-            const translateX = (500 / initLen) + this.factorial(initLen) * translateNum
-            const translateY = translateX
-            console.log(translateX)
-            p.background(255)
-            p.resetMatrix()
-            p.translate(translateX, translateX)
-            p.scale( translateNum * 0.1 )
-  
             
-            if (initLen > minSegLen) {
+            p.background(255)
+            p.stroke(randomCol)
+            p.resetMatrix()
+            p.translate(250 , 500)
+            
+            for (let i = 0; i < fractalArrLen; i++) {
+                const el = fractalArr[i];
 
-                // p.push()
-                for (let i = 0; i < fractalArrLen; i++) {
-                    const el = fractalArr[i];
-    
-                    if (el === 'A') {
-                        p.stroke(randomCol)
-                        p.line(0, 0, 0, -segLen);
-                        p.translate(0, -segLen);
-                    } else if (el === 'B') {
-                        p.translate(segLen, 0)
-                    } else if (el === '+') {
-                        p.rotate(theta);
-                    } else if (el === '-') {
-                        p.rotate(-theta);
-                    } else if (el === '[') {
-                        p.push()
-                    } else if (el === ']') {
-                        p.pop()
-                    }
-                    
+                if (el === 'F') {
+                    p.line(0, 0, 0, -segLen);
+                    p.translate(0, -segLen);
+                } else if (el === 'G') {
+                    p.translate(0, -segLen)
+                } else if (el === '+') {
+                    p.rotate(theta);
+                } else if (el === '-') {
+                    p.rotate(-theta);
+                } else if (el === '[') {
+                    p.push()
+                } else if (el === ']') {
+                    p.pop()
                 }
                 
-                // p.pop();
-                segLen *= 0.5;
             }
-           
         }
+
+        p.loading = () => {
+            p.clear()
+            p.background(255)
+            p.circle(250,250,100)
+
+        }
+
     
         p.draw = () => {
+            
         }
     }
     
 
 
-    render() {        
-   
+    render() {    
+        console.log(this.props)    
         return (
             <>
             <h2>Henlo, I am the canvas!</h2>
-            <p>I have a blue dotted border. I do not work yet.</p>
+            <p>I have a blue dotted border.</p>
             <div
                 className="canvas-container"
                 ref={this.myRef}
