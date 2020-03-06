@@ -25,8 +25,6 @@ const FractalMachine = (props) => {
         setLengthValue(initLenValue.current.value)
         setRuleFValue(setFValue.current.value)
         setRuleGValue(setGValue.current.value)
-
-        
     }
 
     const handleCanvasChange = (canvas) => {
@@ -109,15 +107,12 @@ const FractalMachine = (props) => {
                         :
                         <button onClick={handleModalClick}>Save fractal to gallery</button>
                     )}
-                </span>
-                <span>
+               
                     <ModalForm 
                         showModal={showModal} 
                         saveFractal={saveFractal}
                     />
-                </span>
-                <span>
-                    <button><a href="test" download="myCanvas.png" onClick={exportFractal}>Download fractal as .PNG file</a></button>
+                    <a className="download-link" href="test" download="myCanvas.png" onClick={exportFractal}>Download as .PNG file</a>
                 </span>
             </div>
 

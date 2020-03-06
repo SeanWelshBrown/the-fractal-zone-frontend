@@ -26,7 +26,7 @@ class FractalCanvas extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props && this.myP5._setupDone) {
             this.myP5.loading();
-            setTimeout(this.renderCanvas, 1500);
+            setTimeout(this.renderCanvas, 1200);
             this.props.handleCanvasChange(this.myP5.canvas)
         }
     }
@@ -108,7 +108,7 @@ class FractalCanvas extends React.Component {
             p.createCanvas(500, 500);
             p.background(255);
             p.angleMode(p.DEGREES)
-            this.renderCanvas()
+            p.clear()
         }
 
         p.drawLSystem = (fractalArr, segLen, theta) => {
@@ -159,12 +159,12 @@ class FractalCanvas extends React.Component {
     render() {       
         return (
             <>
-            <h2>Henlo, I am the canvas!</h2>
-            <p>I have a blue dotted border.</p>
+            <h2>The Fractal Machine</h2>
+            <p>Hello. I am the fractal machine. I can make your dreams and nightmares come true.</p>
             <div
                 className="canvas-container"
                 ref={this.myRef}
-            ></div>
+            />
             </>
         )
     }

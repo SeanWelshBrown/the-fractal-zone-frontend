@@ -29,13 +29,7 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
-  /* background-color: #a2a59db9; */
-  /* background-color: #f4db5db6; */
   background-color: #669b9031;
-  /* background-color: #f27491a8; */
-
-  /* background-color: #ffffff; */
   background-image: linear-gradient(180deg, #669b9031 0%, #e0eaf5 74%);
 }
 
@@ -43,10 +37,17 @@ ul {
   list-style: none;
 }
 
-button {
+button, .download-link, input[type="submit"] {
+  background-color: ghostwhite;
   border-radius: 5px;
+  border: 1px solid grey;
+  box-shadow: 3px 2px rgb(251, 255, 253);
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
   font-family: 'Roboto Mono', monospace;
   cursor: pointer;
+  margin: 0 10px;
   padding: 3px;
 }
 
@@ -84,7 +85,7 @@ input {
 }
 
 .grow { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.15); }
+.grow:hover { transform: scale(1.02); }
 
 /* Footer styling */
 
@@ -104,7 +105,7 @@ input {
   font-size: 14px;
   text-align: right;
   margin-top: 5px;
-  margin-right: 70px;
+  margin-right: 30px;
 }
 
 .footer a {
@@ -115,13 +116,31 @@ input {
 
 .footer a:hover {
   /* transform: scale(1.2); */
-  color: aquamarine;
+  color: rgb(165, 244, 200);
+}
+
+/* Login/Reg styling */
+
+.login-register-form input {
+  display: block;
+  margin: auto;
 }
 
 /* Canvas/Fractal-Input styling */
 
+@keyframes fade-in {
+  from { opacity: 0}
+  to { opacity: 1; }
+}
+
 canvas {
   border: 2px dotted black;
+  opacity: 0;
+  animation: fade-in 1s 1.2s ease-out forwards;
+}
+
+.canvas-container {
+  min-height: 504px;
 }
 
 .fractalButtons {
@@ -138,9 +157,27 @@ canvas {
   margin-top: -12px;
 }
 
-.fractalInputs {
+.fractal-inputs-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.fractal-inputs-container label {
+  margin: 0 50px;
+}
+
+.fractal-form-input {
+  display: block;
+  text-align: center;
+}
+
+.rule-input {
+  width: 200px;
+}
+
+.axiom, .theta {
+  width: 60px;
 }
 
 /* Fractal Card styling */
@@ -154,31 +191,32 @@ canvas {
 
 .fractalCard {
   position: relative;
-  border: 2px solid black;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: 7px 7px 10px grey;
-  width: 26%;
+  border: 2px solid grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 3px 2px rgb(251, 255, 253);
+  width: 350px;
   margin: auto;
   margin-bottom: 30px;
   transition: all .2s ease-in-out;
   background-color: whitesmoke;
   cursor: pointer;
+  overflow: hidden;
   
 }
 
 .fractalCard:hover {
-  transform: scale(1.03);
+  transform: scale(1.002);
 }
 
 .extraCardInfoDiv {
   position: absolute;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  height: 77%;
-  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-color: rgba(255, 255, 255, 0.753);
 }
 
@@ -190,8 +228,13 @@ canvas {
 .fractalCard img {
   height: 100%;
   width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+}
+
+.fractal-img-wrapper {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 100%;
   border-bottom: 1px solid black;
 }
 

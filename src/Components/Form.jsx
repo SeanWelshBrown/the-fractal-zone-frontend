@@ -24,12 +24,14 @@ class Form extends Component {
     let {username, password} = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="login-register-form" onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Username:
         <input type="text" autoComplete="off" name="username" value={username} onChange={this.handleChange}/>
-        <label htmlFor="password">Password:</label>
+        </label>
+        <label htmlFor="password">Password:
         <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
+        </label>
         <input type="submit" value="Submit"/>
       </form>
     );
