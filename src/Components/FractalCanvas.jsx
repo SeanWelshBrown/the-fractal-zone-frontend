@@ -53,7 +53,7 @@ class FractalCanvas extends React.Component {
         }
 
         if (setG) {
-            rules.setG = rules.setG = this.props.ruleSetG.split("");
+            rules.setG = rules.setG = setG.split("");
         }
     
         if (this.myP5) {
@@ -66,7 +66,7 @@ class FractalCanvas extends React.Component {
 
     calculateLSystem = (n, rules) => {
         let nextFractalArr = [];
-        if (n === 1) {
+        if (n === 1 || n === 0) {
             return rules.axiom;
         } else {
             let fractalArr = this.calculateLSystem(n - 1, rules);

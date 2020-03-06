@@ -65,8 +65,8 @@ const FractalCard = (props) => {
             <p><strong>Theta: </strong>{parameters.theta}</p>
             <p><strong>Length: </strong>{parameters.length}</p>
             <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
-            <p><strong>Ruleset A: </strong>{parameters.rules.setA}</p>
-            <p><strong>Ruleset B: </strong>{parameters.rules.setB}</p>
+            <p><strong>Ruleset F: </strong>{parameters.rules.setA}</p>
+            <p><strong>Ruleset G: </strong>{parameters.rules.setB}</p>
           </div>
           <img src={image} alt="a fractal" />
           <p><strong>Name: </strong>{name}</p>
