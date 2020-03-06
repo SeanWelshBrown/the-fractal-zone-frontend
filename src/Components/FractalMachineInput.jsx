@@ -16,55 +16,64 @@ const FractalMachineInput = (props) => {
         <div className="fractalInputContainer">
 
           <h3> --~Make a Fractal~-- </h3>
-          <p> Make something beautiful. </p>
 
           <div className="fractalInputs">
 
-          <form className="fractalInputForm" onSubmit={(e) => {handleFormSubmit(e, nValue, thetaValue, axiomValue, initLenValue, setFValue, setGValue)}}>
-            <label>Axiom: </label>
-            <input 
+          <form className="fractal-input-form" onSubmit={(e) => {handleFormSubmit(e, nValue, thetaValue, axiomValue, initLenValue, setFValue, setGValue)}}>
+            <div className="fractal-inputs-container">
+            <label>Axiom: 
+              <input
               key={axiom}
               ref={axiomValue}
+              className="fractal-form-input axiom"
               type="text" 
               name="axiom" 
               placeholder="Enter an Axiom..." 
               defaultValue={axiom} 
             />
+            </label>
             
-            <label>Rule F: </label>
+            <label>Rule F:
             <input 
               key={setF}
               ref={setFValue}
+              className="fractal-form-input rule-input"
               type="text" 
               name="ruleF" 
               placeholder="Enter a first rule..." 
               defaultValue={setF}  
             />
+             </label>
             
-            <label>Rule G: </label>
+            <label>Rule G:
             <input 
               key={setG}
               ref={setGValue}
+              className="fractal-form-input rule-input"
               type="text" 
               name="ruleG" 
               placeholder="(optional)"
               defaultValue={setG} 
             />
-            
-            <label>Theta: </label>
+             </label>
+
+            <label>θ:
             <input 
               key={theta}
               ref={thetaValue}
+              className="fractal-form-input theta"
               type="number" 
               name="theta" 
               placeholder="Enter an angle..." 
               defaultValue={theta}  
             />
-            
-            <label>Length: </label>
+            </label>
+
+            <label>Length:
             <input 
               key={initLen}
               ref={initLenValue}
+              className="fractal-form-input"
               type="range" 
               name="length" 
               min="100" 
@@ -72,11 +81,13 @@ const FractalMachineInput = (props) => {
               step="25"
               defaultValue={initLen} 
             />
+            </label>
 
-           <label>Size: </label>
+           <label>Size:
             <input 
               key={n}
               ref={nValue}
+              className="fractal-form-input"
               type="range" 
               name="size" 
               min="1" 
@@ -84,8 +95,9 @@ const FractalMachineInput = (props) => {
               step="1"
               defaultValue={n} 
             />
-
-            <input type="submit" value="Submit" />
+             </label>
+            </div>
+            <input type="submit" value="Generate!" />
             
           </form>
 

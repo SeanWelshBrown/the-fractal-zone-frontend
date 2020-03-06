@@ -28,8 +28,10 @@ const FractalCard = (props) => {
 
     if (isClicked === false) {
       return (
-        <div className="fractalCard">
-          <img src={image} alt="a fractal" onClick={handleCardClick} />
+        <div className="fractalCard" onClick={handleCardClick}>
+          <div className="fractal-img-wrapper">
+          <img src={image} alt="a fractal" />
+          </div>
           <p><strong>Name: </strong>{name}</p>
           <p><strong>Created by: </strong>{username}</p>
           <button><a href="test" download="myCanvas.png" onClick={exportFractal}>Download fractal as .PNG file</a></button>
@@ -38,8 +40,9 @@ const FractalCard = (props) => {
       )
     } else if (isClicked === true) {
       return (
-        <div className="fractalCard">
-          <div className="extraCardInfoDiv" onClick={handleCardClick}>
+        <div className="fractalCard" onClick={handleCardClick}>
+          <div className="fractal-img-wrapper">
+          <div className="extraCardInfoDiv">
             <p><strong>Theta: </strong>{parameters.theta}</p>
             <p><strong>Length: </strong>{parameters.length}</p>
             <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
@@ -47,6 +50,7 @@ const FractalCard = (props) => {
             <p><strong>Ruleset G: </strong>{parameters.rules.setG}</p>
           </div>
           <img src={image} alt="a fractal" />
+          </div>
           <p><strong>Name: </strong>{name}</p>
           <p><strong>Created by: </strong>{username}</p>
           <button><a href="test" download="myCanvas.png" onClick={exportFractal}>Download fractal as .PNG file</a></button>
@@ -59,8 +63,10 @@ const FractalCard = (props) => {
 
     if (isClicked === false) {
       return (
-        <div className="fractalCard">
-          <img src={image} alt="a fractal" onClick={handleCardClick} />
+        <div className="fractalCard" onClick={handleCardClick}>
+          <div className="fractal-img-wrapper">
+          <img src={image} alt="a fractal" />
+          </div>
           <p><strong>Name: </strong>{name}</p>
           <button><a href="test" download="myCanvas.png" onClick={exportFractal}>Download fractal as .PNG file</a></button>
           <br /><br />
@@ -70,15 +76,17 @@ const FractalCard = (props) => {
       )
     } else if (isClicked === true) {
       return (
-        <div className="fractalCard">
-          <div className="extraCardInfoDiv" onClick={handleCardClick}>
+        <div className="fractalCard" onClick={handleCardClick}>
+          <div className="fractal-img-wrapper">
+          <div className="extraCardInfoDiv">
             <p><strong>Theta: </strong>{parameters.theta}</p>
             <p><strong>Length: </strong>{parameters.length}</p>
             <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
-            <p><strong>Ruleset F: </strong>{parameters.rules.setA}</p>
-            <p><strong>Ruleset G: </strong>{parameters.rules.setB}</p>
+            <p><strong>Ruleset F: </strong>{parameters.rules.setF}</p>
+            <p><strong>Ruleset G: </strong>{parameters.rules.setG}</p>
           </div>
           <img src={image} alt="a fractal" />
+          </div>
           <p><strong>Name: </strong>{name}</p>
           <button><a href="test" download="myCanvas.png" onClick={exportFractal}>Download fractal as .PNG file</a></button>
           <br /><br />
