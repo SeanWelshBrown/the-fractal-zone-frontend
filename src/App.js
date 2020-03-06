@@ -26,7 +26,7 @@ class App extends React.Component {
 
   componentDidMount() {
     
-    fetch('http://localhost:4000/fractals')
+    fetch('https://everybody-loves-fractals.herokuapp.com/fractals')
     .then( r => r.json() )
     .then( fractals => {
       if (fractals.length > 0) {
@@ -40,7 +40,7 @@ class App extends React.Component {
 
     if (localStorage.getItem("token")) {
 
-      fetch("http://localhost:4000/persist", {
+      fetch("https://everybody-loves-fractals.herokuapp.com/persist", {
         headers: {
           "Authorization": `Bearer ${localStorage.token}`
         }
@@ -66,7 +66,7 @@ class App extends React.Component {
   }
   
   handleLoginSubmit = (userInfo) => {
-    return fetch(`http://localhost:4000/login`, {
+    return fetch(`https://everybody-loves-fractals.herokuapp.com/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -78,7 +78,7 @@ class App extends React.Component {
   }
 
   handleRegisterSubmit = (userInfo) => {
-    fetch('http://localhost:4000/users', {
+    fetch('https://everybody-loves-fractals.herokuapp.com/users', {
       method: "POST",
       headers: {
         "content-type": "application/json"

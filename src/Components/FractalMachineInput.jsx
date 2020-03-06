@@ -13,14 +13,14 @@ const FractalMachineInput = (props) => {
 
 
     return (
-        <div className="fractalInputContainer">
+        <div className="fractal-input-container">
 
-          <h3> --~Make a Fractal~-- </h3>
+          <h3> 『 Create⊶a⊷Fractal 』 </h3>
 
-          <div className="fractalInputs">
+          <div className="fractal-inputs">
 
           <form className="fractal-input-form" onSubmit={(e) => {handleFormSubmit(e, nValue, thetaValue, axiomValue, initLenValue, setFValue, setGValue)}}>
-            <div className="fractal-inputs-container">
+            <div className="inner-fractal-inputs-container">
             <label>Axiom: 
               <input
               key={axiom}
@@ -69,6 +69,7 @@ const FractalMachineInput = (props) => {
             />
             </label>
 
+            <div className="sliders">
             <label>Length:
             <input 
               key={initLen}
@@ -96,8 +97,9 @@ const FractalMachineInput = (props) => {
               defaultValue={n} 
             />
              </label>
+             </div>
             </div>
-            <input type="submit" value="Generate!" />
+            <input type="submit" value="⫷ Generate ⫸" />
             
           </form>
 
