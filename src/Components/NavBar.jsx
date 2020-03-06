@@ -10,7 +10,7 @@ const NavBar = (props) => {
           <NavLink to="/about">About</NavLink>
         </li>
         <li className="grow">
-          <NavLink to="/">Fractal Machine</NavLink>
+          <NavLink to="/" exact>Fractal Machine</NavLink>
         </li>
         <li className="grow">
           <NavLink to="/gallery">Gallery</NavLink>
@@ -30,7 +30,7 @@ const NavBar = (props) => {
           <NavLink to="/about">About</NavLink>
         </li>
         <li className="grow">
-          <NavLink to="/">Fractal Machine</NavLink>
+          <NavLink to="/" exact >Fractal Machine</NavLink>
         </li>
         <li className="grow">
           <NavLink to="/gallery">Gallery</NavLink>

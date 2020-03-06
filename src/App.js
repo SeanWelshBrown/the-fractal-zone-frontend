@@ -54,8 +54,10 @@ class App extends React.Component {
     if (resp.user) {
       localStorage.token = resp.token
       this.setState(resp, () => {
-        this.props.history.push("/")
-        console.log(this.state)
+        if (this.props.history.location.pathname === "/login" || this.props.history.location.pathname === "/register") {
+          console.log('hi')
+          this.props.history.push("/")
+        }
       })
     }
     else {
