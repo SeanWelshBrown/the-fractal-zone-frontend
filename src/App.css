@@ -47,19 +47,13 @@ button, .download-link, input[type="submit"] {
   font-size: 12px;
   font-family: 'Roboto Mono', monospace;
   cursor: pointer;
-  margin: 0 10px;
+  margin: 10px 10px;
   padding: 3px;
 }
 
-.deleteBtn {
-  width: 70px;
-  height: 25px;
-  font-size: 12px;
-}
 
 input {
   border-radius: 5px;
-  
 }
 
 /* NavBar styling */
@@ -143,27 +137,27 @@ canvas {
   min-height: 504px;
 }
 
-.fractalButtons {
+.fractal-buttons {
   margin-top: 3px;
 }
-.fractalButtons span {
+.fractal-buttons span {
   display: block;
 }
-.fractalButtons button {
+.fractal-buttons button {
   margin-top: 10px;
 }
 
-.fractalInputContainer {
+.fractal-input-container {
   margin-top: -12px;
 }
 
-.fractal-inputs-container {
+.inner-fractal-inputs-container {
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
 
-.fractal-inputs-container label {
+.inner-fractal-inputs-container label {
   margin: 0 50px;
 }
 
@@ -182,14 +176,14 @@ canvas {
 
 /* Fractal Card styling */
 
-.fractalCardContainer {
+.fractal-card-container {
   display: flex;
   flex-flow: row wrap;
   /* align-items: center; */
   /* flex-wrap: wrap; */
 }
 
-.fractalCard {
+.fractal-card {
   position: relative;
   border: 2px solid grey;
   border-top-left-radius: 5px;
@@ -206,11 +200,11 @@ canvas {
   
 }
 
-.fractalCard:hover {
+.fractal-card:hover {
   transform: scale(1.006);
 }
 
-.extraCardInfoDiv {
+.extra-card-info {
   position: absolute;
   top: 0;
   right: 0;
@@ -220,12 +214,12 @@ canvas {
   cursor: pointer;
 }
 
-.extraCardInfoDiv p {
+.extra-card-info p {
   text-align: center;
   margin-top: 11%;
 }
 
-.fractalCard img {
+.fractal-card img {
   height: 100%;
   width: 100%;
   cursor: pointer;
@@ -240,3 +234,156 @@ canvas {
   cursor: pointer;
 }
 
+/* Guidance Modal Stylings */
+
+.modal {
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10px auto; 
+  overflow: scroll;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #888;
+  height: max-content;
+  width: max-content;
+  padding: 30px;
+}
+
+
+
+.guidance-header {
+  text-decoration: underline;
+}
+
+.save-fractal-form {
+  padding: 50px; 
+
+}
+
+/* Slider Styles */
+
+.sliders {
+  display: inline-flex;
+  align-self: center;
+}
+
+.sliders input {
+  padding-top: 5px;
+}
+
+input[type=range] {
+
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px #FFFFFF;
+  background: #3F454A;
+  border-radius: 0px;
+  border: 1px solid #E0EAF5;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 0px #000000;
+  border: 1px solid #0F3F5E;
+  height: 12px;
+  width: 12px;
+  border-radius: 18px;
+  background: #E0EAF5;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #3F454A;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px #FFFFFF;
+  background: #3F454A;
+  border-radius: 0px;
+  border: 1px solid #E0EAF5;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 0px #000000;
+  border: 1px solid #0F3F5E;
+  height: 12px;
+  width: 12px;
+  border-radius: 18px;
+  background: #E0EAF5;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #3F454A;
+  border: 1px solid #E0EAF5;
+  border-radius: 0px;
+  box-shadow: 1px 1px 0px #FFFFFF;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3F454A;
+  border: 1px solid #E0EAF5;
+  border-radius: 0px;
+  box-shadow: 1px 1px 0px #FFFFFF;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 0px #000000;
+  border: 1px solid #0F3F5E;
+  height: 12px;
+  width: 12px;
+  border-radius: 18px;
+  background: #E0EAF5;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3F454A;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #3F454A;
+}
+
+/* About styling */
+
+
+.about-paragraph {
+  padding: 0 300px;
+}
+
+.about-rules {
+  text-align: left;
+  width: max-content;
+  justify-self: center;
+  padding-left: 300px;
+}

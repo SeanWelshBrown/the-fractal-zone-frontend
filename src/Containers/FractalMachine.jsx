@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import FractalCanvas from '../Components/FractalCanvas';
 import FractalMachineInput from '../Components/FractalMachineInput';
 import ModalForm from '../Components/ModalForm'
+import GuidanceModal from '../Components/GuidanceModal'
+
 
 const FractalMachine = (props) => {
 
@@ -15,6 +17,7 @@ const FractalMachine = (props) => {
     const [currentCanvas, setCurrentCanvas] = useState()
 
     const [showModal, setShowModal] = useState(false)
+    const [showGuidanceModal, setShowGuidanceModal] = useState(false)
 
 
     const handleFormSubmit = (e, nValue, thetaValue, axiomValue, initLenValue, setFValue, setGValue) => {
@@ -34,11 +37,17 @@ const FractalMachine = (props) => {
     const handleModalClick = () => {
         setShowModal(!showModal)
     }
+    
+    const handleGuidanceModalClick = () => {
+        setShowGuidanceModal(!showGuidanceModal)
+    }
+    
+    
 
     const saveFractal = (fractalName) => {
         setShowModal(!showModal)
         const dataURL = currentCanvas.toDataURL()
-        fetch('http://localhost:4000/fractals', {
+        fetch('https://everybody-loves-fractals.herokuapp.com/fractals', {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -88,6 +97,9 @@ const FractalMachine = (props) => {
 
                 handleCanvasChange={handleCanvasChange}
             />
+            <div>
+                <button onClick={handleGuidanceModalClick}>Need guidance?</button>
+            </div>
 
             <FractalMachineInput 
                 n={n}
@@ -100,19 +112,22 @@ const FractalMachine = (props) => {
                 handleFormSubmit={handleFormSubmit}
             />
             
-            <div className="fractalButtons">
+            <div className="fractal-buttons">
                 <span>
-                    {(showModal ? 
-                        <button onClick={handleModalClick}>Close form</button>
-                        :
-                        <button onClick={handleModalClick}>Save fractal to gallery</button>
-                    )}
+                    {
+                        <button onClick={handleModalClick}> Save Fractal to Gallery ⥣</button>
+                    }
                
                     <ModalForm 
                         showModal={showModal} 
+                        handleModalClick={handleModalClick}
                         saveFractal={saveFractal}
                     />
-                    <a className="download-link" href="test" download="myCanvas.png" onClick={exportFractal}>Download as .PNG file</a>
+                    <GuidanceModal
+                        showGuidanceModal={showGuidanceModal}
+                        handleGuidanceModalClick={handleGuidanceModalClick}
+                    />
+                    <a className="download-link" href="test" download="myCanvas.png" onClick={exportFractal}>⥥ Download as .PNG File </a>
                 </span>
             </div>
 

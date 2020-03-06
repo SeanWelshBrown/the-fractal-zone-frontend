@@ -18,13 +18,17 @@ const ModalForm = (props) => {
     return null
   } else {
     return (
-      <div>
-        <form onSubmit={handleInitialSubmit}>
-          <label>Enter a name: </label>
+      <div className="modal">
+        <div className="modal-content">
+        <form classname="save-fractal-form" onSubmit={handleInitialSubmit}>
+          <label>Enter a name: 
           <input type="text" name="name" placeholder="name..." value={fractalName} onChange={handleChangeInput} />
+          </label>
           <br />
           <input type="submit" value="Save fractal" />
         </form>
+        <button onClick={props.handleModalClick}>-𝕏-</button>
+      </div>
       </div>
     )
   }
