@@ -1,6 +1,6 @@
 # Everybody Loves Fractals!
 
-Made by Summer Rizzo & Sean Brown.
+Made by Summer Rizzo & Sean Welsh Brown.
 
 ## What are Fractals?
 
