@@ -27,6 +27,7 @@ const FractalMachineInput = (props) => {
               ref={axiomValue}
               className="fractal-form-input axiom"
               type="text" 
+              pattern="^[FG+\-[\]]*$"
               name="axiom" 
               placeholder="Enter an Axiom..." 
               defaultValue={axiom} 
@@ -39,6 +40,7 @@ const FractalMachineInput = (props) => {
               ref={setFValue}
               className="fractal-form-input rule-input"
               type="text" 
+              pattern="^[FG+\-[\]]*$"
               name="ruleF" 
               placeholder="Enter a first rule..." 
               defaultValue={setF}  
@@ -50,7 +52,8 @@ const FractalMachineInput = (props) => {
               key={setG}
               ref={setGValue}
               className="fractal-form-input rule-input"
-              type="text" 
+              type="text"
+              pattern="^[FG+\-[\]]*$"
               name="ruleG" 
               placeholder="(optional)"
               defaultValue={setG} 
@@ -92,7 +95,7 @@ const FractalMachineInput = (props) => {
               type="range" 
               name="size" 
               min="1" 
-              max="6" 
+              max="8" 
               step="1"
               defaultValue={n} 
             />
