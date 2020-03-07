@@ -265,16 +265,21 @@ canvas {
   padding: 30px;
 }
 
-
+.guidance-content {
+  width: 700px;
+}
 
 .guidance-header {
   text-decoration: underline;
 }
 
+
 .save-fractal-form {
   padding: 50px; 
 
 }
+
+
 
 /* Slider Styles */
 
@@ -376,14 +381,18 @@ input[type=range]:focus::-ms-fill-upper {
 
 /* About styling */
 
-
+.about {
+  max-width: 900px;
+  margin: auto;
+}
 .about-paragraph {
-  padding: 0 300px;
+  /* padding: 0 300px; */
+  text-align: justify;
 }
 
 .about-rules {
-  text-align: left;
-  width: max-content;
+  max-width: 400px;
+  margin: auto;
   justify-self: center;
-  padding-left: 300px;
+  /* padding-left: 300px; */
 }
