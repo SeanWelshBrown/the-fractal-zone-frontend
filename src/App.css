@@ -142,6 +142,7 @@ canvas {
 }
 .fractal-buttons span {
   display: block;
+  padding-top: 10px;
 }
 .fractal-buttons button {
   margin-top: 10px;
@@ -154,7 +155,6 @@ canvas {
 .inner-fractal-inputs-container {
   display: flex;
   justify-content: center;
-  padding-bottom: 20px;
 }
 
 .inner-fractal-inputs-container label {
@@ -172,6 +172,11 @@ canvas {
 
 .axiom, .theta {
   width: 60px;
+}
+
+.generate-btn {
+  position: relative;
+  top: 4px;
 }
 
 /* Fractal Card styling */
