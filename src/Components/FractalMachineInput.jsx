@@ -100,9 +100,10 @@ const FractalMachineInput = (props) => {
               defaultValue={n} 
             />
              </label>
+             <input type="submit" className="generate-btn" value="⫷ Generate ⫸" />
              </div>
             </div>
-            <input type="submit" value="⫷ Generate ⫸" />
+           
             
           </form>
 
