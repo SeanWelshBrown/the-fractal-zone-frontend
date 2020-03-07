@@ -1,68 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Everybody Loves Fractals!
 
-## Available Scripts
+Made by Summer Rizzo & Sean Brown.
 
-In the project directory, you can run:
+## What are Fractals?
 
-### `yarn start`
+I'm glad you asked! Fractals are complex geometric patterns that are defined by self-similarity. In other words, their inner components resemble the whole shape. Due to their recursive nature, they can, essentially, continue indefinitely when magnified. This scaling symmetry lends particularly well to computer generated graphics - which is what we're doing here!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There are many purely geometric examples of fractals - a few famous ones are the Sierpinski Triangle, Koch Snowflake, and Dragon Curve:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+However, although they *technically* cannot be infinite, fractals also appear in nature. Think of a lightning bolt, a leaf vein, a coastline from above, or a branching tree - see how they resemble a fractal pattern?
 
-### `yarn test`
+Such similarities have not gone unnoticed. In fact, it is a perfect segway into our next topic.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Our Drawing Instructions: L-Systems
 
-### `yarn build`
+Fractals can be drawn a few different ways, most of which involve recursion. However, we are using the specific method of the Lindenmayer System - or L-System. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+What is an L-System? Another fantastic question! First and foremost, it's a language system that operates with a specific grammar. It consists of an "alphabet" that is used to write "production rules" that are used to generatively calculate a string of instructions, with a base case that the production rules are initially operated on (the axiom). In the late 1960s, a botanist named Astrid Lindenmayer used L-Systems to describe plant cells, growth processes, and plant development. They are generally fairly simple, compared to what they produce, which is why they are so attractive for the kind of fractal generation we're doing here. Here is what they look like at a basic level:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Alphabet:** A B
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Axiom:** A
 
-### `yarn eject`
+**Rule 1:** A → ABA
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Rule 2:** B → BB
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+n = 0: A
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+n = 1: ABA
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+n = 3: ABA BB ABA
 
-## Learn More
+n = 4: ABA BB ABA BB BB ABA BB ABA
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In our L-System, which is quite common for fractal generation, looks like this:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Terms:
 
-### Code Splitting
+**Theta:** This refers to the angle the lines turn.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**Length:** This refers to the initial length of the line segment. It decreases with each generation.
 
-### Analyzing the Bundle Size
+**Axiom:** This is the base rule.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+**Ruleset F:** For each encounter of 'F', these instructions are appended.
 
-### Making a Progressive Web App
+**Ruleset G:** For each encounter of 'G', these instructions are appended.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Rule Definitions:
 
-### Advanced Configuration
+**F:** Move forward and draw a line.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+**G:** Move forward, but do not draw a line.
 
-### Deployment
+**+:** Rotate at the angle defined by theta.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+**-:** Rotate at the angle opposite of theta.
 
-### `yarn build` fails to minify
+**[:** Save current state (push)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**]:** Return to saved state (pop)
+
+Based on the parameters passed in, we first calculate the string of instructions with a recursive function, and then draw them iteratively onto a canvas.
+
+## At this time, this application is designed to draw fractal trees.
+
+Although all kinds of fractals can be drawn with L-Systems, this implementation of them works best with fractal trees. Due to fractal pattern's irregular scaling rate, we found that this was the most versatile for keeping the drawing on the canvas (we want you to be able to see your lovely fractal creations!). The drawing point is currently fixed, but we hope to make it more dynamic in the futu
+
+# What was this site built with?
+
+For the front end, we're using JavaScript with the React framework with P5.js. For the back end, we're using Rails as an API. 
+
+### Special Thanks
+
+Endless thanks to Dan Shiffman, for his enthusiasm for graphics processing. He is the reason we were able to implement this in such a short time span 
+(less than 5 days!). Without him, this application would not as shiny as it is. If you are interested, please look into his work - you will not be disappointed!

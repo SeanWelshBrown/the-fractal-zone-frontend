@@ -43,7 +43,7 @@ const About = () => {
       
       <div className="about-rules">
       <h5>Terms:</h5><br/>
-      <b>Theta:</b> This refers to the angle the lines turn.<br/>
+      <b>θ Theta:</b> This refers to the angle the lines turn.<br/>
       <b>Length:</b> This refers to the initial length of the line segment. It decreases with each generation.<br/>
       <b>Axiom:</b> This is the base rule.<br/>
       <b>Ruleset F:</b> For each encounter of 'F', these instructions are appended.<br/>
