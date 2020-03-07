@@ -8,13 +8,14 @@ const GuidanceModal = (props) => {
         } else {
         return (
         <div className="modal guidance">
-            <div className="modal-content">
+            <div className="modal-content guidance-content">
                 <h3 className="guidance-header">Terms:</h3>
                     <p><strong>Theta: </strong>This refers to the angle the lines turn.</p>
                     <p><strong>Length: </strong>This refers to the initial length of the line segment. It decreases with each generation.</p>
                     <p><strong>Axiom: </strong>This is the base rule.</p>
                     <p><strong>Ruleset F: </strong>For each encounter of 'F', these instructions are appended.</p>
                     <p><strong>Ruleset G: </strong>For each encounter of 'G', these instructions are appended.</p>
+
                 <h3 className="guidance-header">Rule Definitions:</h3>
                     <p><strong>F: </strong>Move forward and draw a line.</p>
                     <p><strong>G: </strong>Move forward, but do not draw a line.</p>
