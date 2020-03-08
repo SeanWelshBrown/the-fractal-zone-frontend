@@ -401,3 +401,11 @@ input[type=range]:focus::-ms-fill-upper {
   justify-self: center;
   /* padding-left: 300px; */
 }
+
+.about a, .about a:visited {
+  color: rgb(43, 94, 131);
+  text-decoration-style: dashed;
+}
+
+
+

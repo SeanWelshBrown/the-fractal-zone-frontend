@@ -2,8 +2,12 @@ import React, { useRef } from 'react';
 
 const FractalMachineInput = (props) => {
   
-    let { n, theta, axiom, initLen, setF, setG, handleFormSubmit} = props;
+    
+    let { n, theta, axiom, initLen, setF, setG } = props.fractalParams;
+  
+    const handleFormSubmit = props.handleFormSubmit;
 
+    // create refs to send changes up to parent on form submit
     const nValue = useRef();
     const thetaValue = useRef();
     const axiomValue = useRef();

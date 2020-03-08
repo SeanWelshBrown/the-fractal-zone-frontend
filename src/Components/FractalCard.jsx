@@ -32,7 +32,6 @@ const FractalCard = (props) => {
           {isClicked === true ? 
             (<div className="extra-card-info" >
               <p><strong>Theta: </strong>{parameters.theta}</p>
-              <p><strong>Length: </strong>{parameters.length}</p>
               <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
               <p><strong>Ruleset F: </strong>{parameters.rules.setF}</p>
               <p><strong>Ruleset G: </strong>{parameters.rules.setG}</p>
@@ -43,7 +42,7 @@ const FractalCard = (props) => {
           </div>
           <p><strong>Name: </strong>{name}</p>
           <p><strong>Created by: </strong>{username}</p>
-          <a className="download-link" href="test" download="myCanvas.png" onClick={exportFractal}>⥥ Download as .PNG File</a>
+          <a className="download-link" href="test" download={`${name.replace(/\s+/g, '-').toLowerCase()}.png`} onClick={exportFractal}>⥥ Download as .PNG File</a>
           <br /><br />
         </div>
       )
@@ -57,17 +56,16 @@ const FractalCard = (props) => {
           {isClicked === true ? 
             (<div className="extra-card-info" >
               <p><strong>Theta: </strong>{parameters.theta}</p>
-              <p><strong>Length: </strong>{parameters.length}</p>
               <p><strong>Axiom: </strong>{parameters.rules.axiom}</p>
               <p><strong>Ruleset F: </strong>{parameters.rules.setF}</p>
               <p><strong>Ruleset G: </strong>{parameters.rules.setG}</p>
             </div>) :
              null
              }
-          <img src={image} alt="a fractal" />
+          <img src={image} alt={name} />
           </div>
           <p><strong>Name: </strong>{name}</p>
-          <a className="download-link" href="test" download="myCanvas.png" onClick={exportFractal}>⥥ Download as .PNG File</a>
+          <a className="download-link" href="test" download={`${name.replace(/\s+/g, '-').toLowerCase()}.png`} onClick={exportFractal}>⥥ Download as .PNG File</a>
           <br /><br />
           <button className="delete-btn" onClick={handleInitialDeleteFractal}>Delete</button>
           <br /><br />
