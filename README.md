@@ -4,6 +4,8 @@ Made by Summer Rizzo & Sean Welsh Brown.
 
 Hosted at: https://everybodylovesfractals.netlify.com/
 
+Back-end source code: https://github.com/Rizz0S/Everybody-Loves-Fractals-Backend
+
 ## What are Fractals?
 
 I'm glad you asked! Fractals are complex geometric patterns that are defined by self-similarity. In other words, their inner components resemble the whole shape. Due to their recursive nature, they can, essentially, continue indefinitely when magnified. This scaling symmetry lends particularly well to computer generated graphics - which is what we're doing here!
