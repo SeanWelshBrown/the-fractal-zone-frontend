@@ -2,7 +2,7 @@
 
 Made by Summer Rizzo & Sean Welsh Brown.
 
-Hosted at: https://everybodylovesfractals.netlify.com/
+Hosted at: https://thefractal.zone/
 
 ## What are Fractals?
 
