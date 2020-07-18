@@ -4,6 +4,8 @@ Made by Summer Rizzo & Sean Welsh Brown.
 
 Hosted at: https://thefractal.zone/
 
+Back-end source code: https://github.com/Rizz0S/Everybody-Loves-Fractals-Backend
+
 ## What are Fractals?
 
 I'm glad you asked! Fractals are complex geometric patterns that are defined by self-similarity. In other words, their inner components resemble the whole shape. Due to their recursive nature, they can, essentially, continue indefinitely when magnified. This scaling symmetry lends particularly well to computer generated graphics - which is what we're doing here!
@@ -70,7 +72,7 @@ Based on the parameters passed in, we first calculate the string of instructions
 
 Although all kinds of fractals can be drawn with L-Systems, this implementation of them works best with fractal trees. Due to fractal pattern's irregular scaling rate, we found that this was the most versatile for keeping the drawing on the canvas (we want you to be able to see your lovely fractal creations!). The drawing point is currently fixed, but we hope to make it more dynamic in the futu
 
-# What was this site built with?
+## What was this site built with?
 
 For the front end, we're using JavaScript with the React framework with P5.js. For the back end, we're using Rails as an API. 
 
