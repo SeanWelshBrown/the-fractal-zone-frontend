@@ -17,7 +17,10 @@ const FractalCard = (props) => {
   }
 
   const handleCardClick = () => {
-    setClicked(!isClicked)
+    const selection = window.getSelection();
+    if (selection.type !== "Range") {
+      setClicked(!isClicked)
+    }
   }
 
   const exportFractal = (e) => {
